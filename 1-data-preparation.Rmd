@@ -29,8 +29,6 @@ mydata$RATIO <- mydata$SHUCK / mydata$VOLUME
 
 -----
 
-***##### Section 1: Summarizing the data.***
-
 ```{r Part_1a}
 summary(mydata)
 table(mydata$CLASS, mydata$RINGS)
