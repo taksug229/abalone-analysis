@@ -7,41 +7,42 @@
 
     renv::restore()
 
-    ## * The library is already synchronized with the lockfile.
 
 # Introduction
 
-***Abalones are an economic and recreational resource that is threatened
-by a variety of factors which include: pollution, disease, loss of
-habitat, predation, commercial harvesting, sport fishing and illegal
-harvesting. Environmental variation and the availability of nutrients
-affect the growth and maturation rate of abalones. Over the last 20+
-years it is estimated the commercial catch of abalone worldwide has
-declined in the neighborhood of 40%. Abalones are easily over harvested
-because of slow growth rates and variable reproductive success. Being
-able to quickly determine the age composition of a regional abalone
-population would be an important capability. The information so derived
-could be used to manage harvesting requirements.***
+Abalones are an economic and recreational resource that is threatened by
+a variety of factors which include: pollution, disease, loss of habitat,
+predation, commercial harvesting, sport fishing and illegal harvesting.
+Environmental variation and the availability of nutrients affect the
+growth and maturation rate of abalones. Over the last 20+ years it is
+estimated the commercial catch of abalone worldwide has declined in the
+neighborhood of 40%. Abalones are easily over harvested because of slow
+growth rates and variable reproductive success. Being able to quickly
+determine the age composition of a regional abalone population would be
+an important capability. The information so derived could be used to
+manage harvesting requirements.
 
-***The data are derived from an observational study of abalones. The
-intent of the investigators was to predict the age of abalone from
-physical measurements thus avoiding the necessity of counting growth
-rings for aging. Ideally, a growth ring is produced each year of age.***
-***Currently, age is determined by drilling the shell and counting the
-number of shell rings using a microscope. This is a difficult and time
-consuming process. Ring clarity can be an issue. At the completion of
-the breeding season sexing abalone can be difficult. Similar
-difficulties are experienced when trying to determine the sex of
-immature abalone.*** ***The study was not successful. The investigators
-concluded additional information would be required such as weather
-patterns and location which affect food availability.***
+The data are derived from an observational study of abalones. The intent
+of the investigators was to predict the age of abalone from physical
+measurements thus avoiding the necessity of counting growth rings for
+aging. Ideally, a growth ring is produced each year of age. Currently,
+age is determined by drilling the shell and counting the number of shell
+rings using a microscope. This is a difficult and time consuming
+process. Ring clarity can be an issue. At the completion of the breeding
+season sexing abalone can be difficult. Similar difficulties are
+experienced when trying to determine the sex of immature abalone. The
+study was not successful. The investigators concluded additional
+information would be required such as weather patterns and location
+which affect food availability.
 
-***I will analyze the data provided from this study further.***
+I will analyze the data provided from this study further.
 
 # 1. Data Preparation
 
-***The structure of the data. We can see that there are 1,036
-observations (rows) and 8 variables (columns). ***
+------------------------------------------------------------------------
+
+The structure of the data. We can see that there are 1,036 observations
+(rows) and 8 variables (columns).
 
     ## 'data.frame':    1036 obs. of  8 variables:
     ##  $ SEX   : Factor w/ 3 levels "F","I","M": 2 2 2 2 2 2 2 2 2 2 ...
@@ -55,7 +56,7 @@ observations (rows) and 8 variables (columns). ***
 
 ------------------------------------------------------------------------
 
-***The basic summary of the data with a table of Class vs Rings.***
+The basic summary of the data with a table of Class vs Rings.
 
     ##  SEX         LENGTH           DIAM            HEIGHT          WHOLE        
     ##  F:326   Min.   : 2.73   Min.   : 1.995   Min.   :0.525   Min.   :  1.625  
@@ -94,13 +95,13 @@ observations (rows) and 8 variables (columns). ***
     ##   A4   0   0   0   0   0
     ##   A5   4   1   7   2   1
 
-***The variables being discussed here is SEX and CLASS. SEX contains
-male, female, and infant. CLASS are ordered age classification based on
-RINGS (A1=youngest, and A6= oldest). Overall, the distribution seems
-like it’s following a normal distribution, but with a slight left
-skewness. Potential outliers may be abalones that are considered infants
-in the A4 and A5 groups. Since A4 and A5 are older, their sex should
-have been identified and it could be an error in the data.***
+The variables being discussed here is SEX and CLASS. SEX contains male,
+female, and infant. CLASS are ordered age classification based on RINGS
+(A1=youngest, and A6= oldest). Overall, the distribution seems like it’s
+following a normal distribution, but with a slight left skewness.
+Potential outliers may be abalones that are considered infants in the A4
+and A5 groups. Since A4 and A5 are older, their sex should have been
+identified and it could be an error in the data.
 
     ##      
     ##         A1   A2   A3   A4   A5  Sum
@@ -111,11 +112,11 @@ have been identified and it could be an error in the data.***
 
 ![](README_files/figure-markdown_strict/1Part_1b-1.png)![](README_files/figure-markdown_strict/1Part_1b-2.png)
 
-***Female and male abalones are left skewed and infant abalones are
-right skewed in the ordered class. This is most likely because it is
-harder to identify the sex of younger abalones. The number of infant
-abalones decrease as the age groups increase because the sex are
-identified in older groups.***
+Female and male abalones are left skewed and infant abalones are right
+skewed in the ordered class. This is most likely because it is harder to
+identify the sex of younger abalones. The number of infant abalones
+decrease as the age groups increase because the sex are identified in
+older groups.
 
 ![](README_files/figure-markdown_strict/1Part_1c-1.png)
 
@@ -125,26 +126,25 @@ identified in older groups.***
 
 ![](README_files/figure-markdown_strict/1Part_2b-1.png)
 
-***Both plots have a positive correlation to whole. As age groups
-increase, whole increases and the y variable of volume and shuck
-increase as well. The first plot has A3~A5 scattered around the middle
-and top right part of the graph. This behavior seems random without a
-clear trend. However, for the second plot, we can observe certain
-trends. The younger groups such as A1~A3 are much closer to the maximum
-line compared to the older groups such A4~A5. It seems like as abalones
-age, the ratio of shuck to whole starts to decrease. This is an
-interesting finding because the first plot is a visualization of volume
-vs whole. Even though the volume may increase as abalones age, that
-doesn’t mean the shuck will increase as well.***
+Both plots have a positive correlation to whole. As age groups increase,
+whole increases and the y variable of volume and shuck increase as well.
+The first plot has A3~A5 scattered around the middle and top right part
+of the graph. This behavior seems random without a clear trend. However,
+for the second plot, we can observe certain trends. The younger groups
+such as A1-A3 are much closer to the maximum line compared to the older
+groups such A4-A5. It seems like as abalones age, the ratio of shuck to
+whole starts to decrease. This is an interesting finding because the
+first plot is a visualization of volume vs whole. Even though the volume
+may increase as abalones age, that doesn’t mean the shuck will increase
+as well.
 
 ------------------------------------------------------------------------
 
 ![](README_files/figure-markdown_strict/1Part_3a-1.png)
 
-***All three sexes are close to a normality. However, all 3 sexes seem
-to be right skewed as we can observe from the histogram and qqplot. The
+All three sexes are close to a normality. However, all 3 sexes seem to
+be right skewed as we can observe from the histogram and qqplot. The
 boxplot shows there are outliers in all 3 sexes above the upper extreme.
-***
 
 <table>
 <colgroup>
@@ -426,19 +426,19 @@ boxplot shows there are outliers in all 3 sexes above the upper extreme.
 </tbody>
 </table>
 
-***The majority of the outliers have a ratio above 0.22. There was 1
+The majority of the outliers have a ratio above 0.22. There was 1
 observation that had a ratio of 0.06 which made it as an outlier in the
 lower extreme. Also, there were no outliers for abalones in the A4
-class.***
+class.
 
 ------------------------------------------------------------------------
 
 ![](README_files/figure-markdown_strict/1Part_4a-1.png)
 
-***Since there is a positive correlation between the variables, I think
-it would do fairly well to predict the age. However, as age approaches
-the A4 & A5 class, it would be difficult to classify because both groups
-have similar boxplot stats for volume and whole.***
+Since there is a positive correlation between the variables, I think it
+would do fairly well to predict the age. However, as age approaches the
+A4 & A5 class, it would be difficult to classify because both groups
+have similar boxplot stats for volume and whole.
 
 ------------------------------------------------------------------------
 
@@ -577,24 +577,25 @@ are inconsistencies in the ratio.***
 ***We can suggest that as abalones age, the volume and whole increase.
 Comparing the infant and adults, we can observe that the adults have
 more variability as rings increases. The infants have a relatively small
-variance compared to the adults. ***
+variance compared to the adults.***
 
 ------------------------------------------------------------------------
 
 ***The biggest reason that the original study failed was because it was
 not possible to completely predict the age of the abalone from the
-physical measurements. Specifically, the age group of A4~A5 had
+physical measurements. Specifically, the age group of A4-A5 had
 identical sizes which was difficult to differentiate. For the age groups
-in early ages such as A1~A3, it may be possibly to predict the age with
+in early ages such as A1-A3, it may be possibly to predict the age with
 the physical appearances.***
 
 ***I would inquire if there are certain groups that need to be
 considered. For example, for studies related to health, age is an
-extremely important variable. During the COVID pandemic, the Simpson’s
-paradox became a topic of concern while analyzing the statistics of
-fatality rate and vaccine effectiveness.
-<https://www.lancaster.ac.uk/stor-i-student-sites/robyn-goldsmith/2021/04/02/being-careful-with-covid-19-statistics-simpsons-paradox/>
-I would inquire about any demographic information as possible.***
+extremely important variable. During the COVID pandemic, the [Simpson’s
+paradox became a topic of
+concern](https://www.lancaster.ac.uk/stor-i-student-sites/robyn-goldsmith/2021/04/02/being-careful-with-covid-19-statistics-simpsons-paradox/)
+while analyzing the statistics of fatality rate and vaccine
+effectiveness. I would inquire about any demographic information as
+possible.***
 
 ***One of the most difficult elements of observational studies is that
 the sample may not represent the population. For example, even though a
@@ -607,8 +608,10 @@ domain knowledge and critical thinking.***
 
 # 2. Data Analysis
 
-***The structure of the data. We can see that there are 1,036
-observations (rows) and 10 variables (columns). ***
+------------------------------------------------------------------------
+
+The structure of the data. We can see that there are 1,036 observations
+(rows) and 10 variables (columns).
 
     ## 'data.frame':    1036 obs. of  10 variables:
     ##  $ SEX   : Factor w/ 3 levels "F","I","M": 2 2 2 2 2 2 2 2 2 2 ...
@@ -650,7 +653,7 @@ observations (rows) and 10 variables (columns). ***
     ## data:  mydata$L_RATIO by mydata$CLASS
     ## Bartlett's K-squared = 3.1891, df = 4, p-value = 0.5267
 
-***L\_RATIO (log ratio) exhibits a better conformance to a normal
+L\_RATIO (log ratio) exhibits a better conformance to a normal
 distribution with homogeneous variances across age. The skewness is
 close to 0 which indicates it’s a symmetrical distribution. The kurtosis
 is also close to 3 which indicates it is mesokurtic and resembles a
@@ -660,7 +663,7 @@ variances across ages with the Barlett test. Since the p-value is much
 greater than 0.05, we fail to reject the null hypothesis of having
 identical variances. On the other hand, the RATIO has p-value of
 0.0002531 for the Barlett test which indicates that the variances are
-not homogeneous across ages.***
+not homogeneous across ages.
 
     ##               Df Sum Sq Mean Sq F value  Pr(>F)    
     ## CLASS          4  1.055 0.26384  38.370 < 2e-16 ***
@@ -677,12 +680,12 @@ not homogeneous across ages.***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-***While we get statistically significant results with CLASS and SEX
+While we get statistically significant results with CLASS and SEX
 independently, that is not the case when we factor CLASS and SEX. We can
 say there is an interaction effect between these two independent
 variables. Since both of these variables affects the outcome of
 L\_RATIO, we inevitably get a non-significant result when these two are
-interacting. ***
+interacting.
 
     ##   Tukey multiple comparisons of means
     ##     95% family-wise confidence level
@@ -708,13 +711,13 @@ interacting. ***
     ## M-F  0.002069057 -0.012585555  0.0167236691 0.9412689
     ## M-I  0.017959386  0.003340824  0.0325779478 0.0111881
 
-***We can identify many statistically significant results from different
+We can identify many statistically significant results from different
 age groups. The only non-significant result we observe was from A2-A1.
 This indicates that as the abolone’s age group change (besides from A1
 to A2), the L\_RATIO will change as well. Male and female abalones can
 be combined into a single category because both have significant
 differences from infants and we have an extremely high adjusted p-value
-which suggests there is no difference between male and female.***
+which suggests there is no difference between male and female.
 
     ## 
     ## ADULT     I 
@@ -724,16 +727,15 @@ which suggests there is no difference between male and female.***
 
 ![](README_files/figure-markdown_strict/2Part_3a2-1.png)
 
-***Infants have a right skewed distribution compared to adults. It would
-be hard to separate infants and adults around the lower volume areas,
-since there are a lot of overlaps in the two distributions (especially
-volumes under 300). For larger volumes, it may be easier to separate
-infants and adults. For volumes over 500, most of the abalones tend to
-be adults.***
+Infants have a right skewed distribution compared to adults. It would be
+hard to separate infants and adults around the lower volume areas, since
+there are a lot of overlaps in the two distributions (especially volumes
+under 300). For larger volumes, it may be easier to separate infants and
+adults. For volumes over 500, most of the abalones tend to be adults.
 
 ![](README_files/figure-markdown_strict/2Part_3b-1.png)
 
-***The log-transformation reduces the variability of the relationship
+The log-transformation reduces the variability of the relationship
 between volume and shuck we can make a better distinction between
 groups. We can see that there is a positive correlation between volume
 and shuck. For class levels, we can observe that the younger age groups,
@@ -741,7 +743,7 @@ especially the A1 groups, are separated from the rest. We can observe
 that in general, when age groups increase, the shuck and volume increase
 as well. This observation is replicated in the type level. Most of the
 infants are scattered around the lower end of the volume and shuck. The
-adults are scattered around the higher end of the volume and shuck.***
+adults are scattered around the higher end of the volume and shuck.
 
     ## 
     ## ADULT     I 
@@ -771,7 +773,7 @@ adults are scattered around the higher end of the volume and shuck.***
     ## Multiple R-squared:  0.9504, Adjusted R-squared:  0.9501 
     ## F-statistic:  3287 on 6 and 1029 DF,  p-value: < 2.2e-16
 
-***The summary here shows the reference level of class as A1 and type as
+The summary here shows the reference level of class as A1 and type as
 adult. The coefficients for classes A2~A5 are the differences associated
 with A1 and adult. We can imply that the classes A1~A5 are highly
 correlated variables. When we plotted the data in the scatter plot
@@ -781,13 +783,13 @@ considered all the predictor variables together, we can see that the
 classes A2~A5 have a negative effect. The coefficients shows that if the
 data belongs to a class in A2~A5 and holding every other predictors
 constant, it will have a negative effect when the reference class is A1
-and reference type is adult. ***
+and reference type is adult.
 
-***Compared to class, type is not as an important predictor for shuck.
-The coefficient are much smaller compared to most of the other classes.
+Compared to class, type is not as an important predictor for shuck. The
+coefficient are much smaller compared to most of the other classes.
 However, it is important to keep in mind that the dependent variable is
 in log 10 scale. This means that even though it may be a small
-coefficient, it still can influence the results greatly. ***
+coefficient, it still can influence the results greatly.
 
 ------------------------------------------------------------------------
 
@@ -813,19 +815,19 @@ coefficient, it still can influence the results greatly. ***
     ## data:  tempdf$residuals by tempdf$TYPE
     ## Bartlett's K-squared = 0.31156, df = 1, p-value = 0.5767
 
-***With the above calculations, we checked the assumptions of linear
+With the above calculations, we checked the assumptions of linear
 regression. We checked if the residuals were normally distributed and
 tested the homogeneity of variance of the residuals across classes. Both
 of these assumptions were met. We can also observe that volume and shuck
 have a linear relationship from 3(b) and we know each abalones are
 independent from each other. Therefore, this model indeed fit the
-dataset and it may be useful for harvesting decisions.***
+dataset and it may be useful for harvesting decisions.
 
 ------------------------------------------------------------------------
 
-***Harvest Strategy:***
+Harvest Strategy:
 
-***There is a tradeoff faced in managing abalone harvest. The infant
+There is a tradeoff faced in managing abalone harvest. The infant
 population must be protected since it represents future harvests. On the
 other hand, the harvest should be designed to be efficient with a yield
 to justify the effort. This assignment will use VOLUME to form binary
@@ -833,7 +835,7 @@ decision rules to guide harvesting. If VOLUME is below a “cutoff”
 (i.e. a specified volume), that individual will not be harvested. If
 above, it will be harvested. Different rules are possible.The Management
 needs to make a decision to implement 1 rule that meets the business
-goal.***
+goal.
 
 ------------------------------------------------------------------------
 
@@ -864,7 +866,7 @@ goal.***
 
 ![](README_files/figure-markdown_strict/2Part_6d-1.png)
 
-***We can clearly observe a difference in median between infants and
+We can clearly observe a difference in median between infants and
 adults. There will be a trade off of trying to preserve as much infants
 versus trying to harvest as much adults as possible. Since we want to
 save as much infants as possible, we don’t want to choose the median
@@ -873,13 +875,13 @@ infants which would have a negative effect on future harvests. Choosing
 the median adult point as the cut off would be the better option because
 it would still save roughly 97.6% of all infants while harvesting half
 of all adults. There needs to be a business decision made based on the
-choosing the right cut off point for the business. ***
+choosing the right cut off point for the business.
 
 ------------------------------------------------------------------------
 
-***More harvest strategies:***
+More harvest strategies:
 
-***This part will address the determination of a cutoff volume.value
+This part will address the determination of a cutoff volume.value
 corresponding to the observed maximum difference in harvest percentages
 of adults and infants. In other words, we want to find the volume value
 such that the vertical distance between the infant curve and the adult
@@ -888,7 +890,7 @@ from item (6) must be used. These proportions must be converted from
 “not harvested” to “harvested” proportions by using (1 - prop.infants)
 for infants, and (1 - prop.adults) for adults. The reason the proportion
 for infants drops sooner than adults is that infants are maturing and
-becoming adults with larger volumes.***
+becoming adults with larger volumes.
 
 ------------------------------------------------------------------------
 
@@ -929,7 +931,7 @@ becoming adults with larger volumes.***
     ## Max difference      262.100   0.742   0.176        0.584
     ## Zero A1 infants     206.800   0.826   0.287        0.676
 
-***There are various thresholds depending on the cutoff volume and there
+There are various thresholds depending on the cutoff volume and there
 are trade offs. Protect all infants is the most conservative threshold
 with only harvesting volumes that are equal or greater than 526.8.
 Because this method is protecting all infants, the FPR is 0, but TPR is
@@ -941,4 +943,4 @@ method harvests roughly half of infant abalones that shouldn’t have been
 harvested in order to harvest more adults. The median adults, max
 difference, and zero A1 infants are in between the 2 extreme cutoff
 points. The business needs to make a decision based on the trade offs of
-harvesting the abalones now or keeping them for the future. ***
+harvesting the abalones now or keeping them for the future.
