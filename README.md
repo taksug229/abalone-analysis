@@ -1,6 +1,6 @@
 # Abalone Harvest Analysis
 
-![Abalone Image](~/Desktop/Abalone/img/abalone.jpg) Photo by [La
+![Abalone Image](img/abalone.jpg) Photo by [La
 La](https://unsplash.com/@larrylam)
 
 ## Requirements
