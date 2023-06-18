@@ -1,14 +1,19 @@
-# Requirements
+# Abalone Harvest Analysis
+
+![Abalone Image](~/Desktop/Abalone/img/abalone.jpg) Photo by [La
+La](https://unsplash.com/@larrylam)
+
+## Requirements
 
 -   R
 -   renv
 
-# Environment set up
+## Environment set up
 
     renv::restore()
 
 
-# Introduction
+## Introduction
 
 Abalones are an economic and recreational resource that is threatened by
 a variety of factors which include: pollution, disease, loss of habitat,
@@ -37,7 +42,7 @@ which affect food availability.
 
 I will analyze the data provided from this study further.
 
-# 1. Data Preparation
+## 1. Data Preparation
 
 ------------------------------------------------------------------------
 
@@ -128,7 +133,7 @@ older groups.
 
 Both plots have a positive correlation to whole. As age groups increase,
 whole increases and the y variable of volume and shuck increase as well.
-The first plot has A3~A5 scattered around the middle and top right part
+The first plot has A3-A5 scattered around the middle and top right part
 of the graph. This behavior seems random without a clear trend. However,
 for the second plot, we can observe certain trends. The younger groups
 such as A1-A3 are much closer to the maximum line compared to the older
@@ -606,7 +611,7 @@ studies, correlation can possibly be determined, but not causality.
 Determining causality would be extremely difficult and it will require
 domain knowledge and critical thinking.
 
-# 2. Data Analysis
+## 2. Data Analysis
 
 ------------------------------------------------------------------------
 
@@ -780,7 +785,7 @@ correlated variables. When we plotted the data in the scatter plot
 earlier, it showed positive correlation for volume and shuck for all
 classes A1-A5 independently. However, when we fit the model and
 considered all the predictor variables together, we can see that the
-classes A2~A5 have a negative effect. The coefficients shows that if the
+classes A2-A5 have a negative effect. The coefficients shows that if the
 data belongs to a class in A2-A5 and holding every other predictors
 constant, it will have a negative effect when the reference class is A1
 and reference type is adult.

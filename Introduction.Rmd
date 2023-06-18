@@ -7,18 +7,23 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Requirements
+# Abalone Harvest Analysis
+
+![Abalone Image](~/Desktop/Abalone/img/abalone.jpg)
+Photo by [La La](https://unsplash.com/@larrylam)
+
+## Requirements
 
 - R
 - renv
 
-#  Environment set up
+##  Environment set up
 
 ```{r renv}
 renv::restore()
 ```
 
-# Introduction
+## Introduction
 
 Abalones are an economic and recreational resource that is threatened by a variety of factors which include: pollution, disease, loss of habitat, predation, commercial harvesting, sport fishing and illegal harvesting. Environmental variation and the availability of nutrients affect the growth and maturation rate of abalones. Over the last 20+ years it is estimated the commercial catch of abalone worldwide has declined in the neighborhood of 40%. Abalones are easily over harvested because of slow growth rates and variable reproductive success. Being able to quickly determine the age composition of a regional abalone population would be an important capability. The information so derived could be used to manage harvesting requirements.
 

@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = FALSE, eval = TRUE)
 
 ```
 
-# 2. Data Analysis
+## 2. Data Analysis
 
 -----
 
@@ -143,7 +143,7 @@ m_reg1 <- lm(L_SHUCK~L_VOLUME + CLASS + TYPE, data = mydata)
 summary(m_reg1)
 ```
 
-The summary here shows the reference level of class as A1 and type as adult. The coefficients for classes A2-A5 are the differences associated with A1 and adult. We can imply that the classes A1-A5 are highly correlated variables. When we plotted the data in the scatter plot earlier, it showed positive correlation for volume and shuck for all classes A1-A5 independently. However, when we fit the model and considered all the predictor variables together, we can see that the classes A2~A5 have a negative effect. The coefficients shows that if the data belongs to a  class in A2-A5 and holding every other predictors constant, it will have a negative effect when the reference class is A1 and reference type is adult.
+The summary here shows the reference level of class as A1 and type as adult. The coefficients for classes A2-A5 are the differences associated with A1 and adult. We can imply that the classes A1-A5 are highly correlated variables. When we plotted the data in the scatter plot earlier, it showed positive correlation for volume and shuck for all classes A1-A5 independently. However, when we fit the model and considered all the predictor variables together, we can see that the classes A2-A5 have a negative effect. The coefficients shows that if the data belongs to a  class in A2-A5 and holding every other predictors constant, it will have a negative effect when the reference class is A1 and reference type is adult.
 
 Compared to class, type is not as an important predictor for shuck. The coefficient are much smaller compared to most of the other classes. However, it is important to keep in mind that the dependent variable is in log 10 scale. This means that even though it may be a small coefficient, it still can influence the results greatly.
 

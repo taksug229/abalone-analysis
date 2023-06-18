@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = FALSE, eval = TRUE)
 
 ```
 
-# 1. Data Preparation
+## 1. Data Preparation
 
 -----
 
@@ -85,7 +85,7 @@ abline(a=0, b=slope)
 
 ```
 
-Both plots have a positive correlation to whole. As age groups increase, whole increases and the y variable of volume and shuck increase as well. The first plot has A3~A5 scattered around the middle and top right part of the graph. This behavior seems random without a clear trend. However, for the second plot, we can observe certain trends. The younger groups such as A1-A3 are much closer to the maximum line compared to the older groups such A4-A5. It seems like as abalones age, the ratio of shuck to whole starts to decrease. This is an interesting finding because the first plot is a visualization of volume vs whole. Even though the volume may increase as abalones age, that doesn't mean the shuck will increase as well.
+Both plots have a positive correlation to whole. As age groups increase, whole increases and the y variable of volume and shuck increase as well. The first plot has A3-A5 scattered around the middle and top right part of the graph. This behavior seems random without a clear trend. However, for the second plot, we can observe certain trends. The younger groups such as A1-A3 are much closer to the maximum line compared to the older groups such A4-A5. It seems like as abalones age, the ratio of shuck to whole starts to decrease. This is an interesting finding because the first plot is a visualization of volume vs whole. Even though the volume may increase as abalones age, that doesn't mean the shuck will increase as well.
 
 -----
 
