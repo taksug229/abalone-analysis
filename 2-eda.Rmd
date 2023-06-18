@@ -10,7 +10,9 @@ knitr::opts_chunk$set(echo = FALSE, eval = TRUE)
 
 ```
 
-##Data Analysis #2
+# 2. Data Analysis
+
+***The structure of the data. We can see that there are 1,036 observations (rows) and 10 variables (columns). ***
 
 ```{r 2analysis_setup, message = FALSE, warning = FALSE}
 
@@ -70,6 +72,7 @@ bartlett.test(mydata$RATIO~mydata$CLASS)
 bartlett.test(mydata$L_RATIO~mydata$CLASS)
 
 ```
+
 ***L_RATIO (log ratio) exhibits a better conformance to a normal distribution with homogeneous variances across age. The skewness is close to 0 which indicates it's a symmetrical distribution. The kurtosis is also close to 3 which indicates it is mesokurtic and resembles a normal distribution peak. We can visually see this with the histogram and qqplot as well. We can also see that the L_RATIO have homogeneous variances across ages with the Barlett test. Since the p-value is much greater than 0.05, we fail to reject the null hypothesis of having identical variances. On the other hand, the RATIO has p-value of 0.0002531 for the Barlett test which indicates that the variances are not homogeneous across ages.***
 
 
@@ -144,8 +147,6 @@ summary(m_reg1)
 
 -----
 
------
-
 ```{r 2Part_5am, fig.width = 12}
 my_layout <- matrix(c(1,2), ncol=2, byrow=TRUE)
 layout(my_layout)
@@ -183,9 +184,9 @@ bartlett.test(tempdf$residuals~tempdf$TYPE)
 
 -----
 
-Harvest Strategy:
+***Harvest Strategy:***
 
-There is a tradeoff faced in managing abalone harvest. The infant population must be protected since it represents future harvests. On the other hand, the harvest should be designed to be efficient with a yield to justify the effort. This assignment will use VOLUME to form binary decision rules to guide harvesting. If VOLUME is below a "cutoff" (i.e. a specified volume), that individual will not be harvested. If above, it will be harvested. Different rules are possible.The Management needs to make a decision to implement 1 rule that meets the business goal.
+***There is a tradeoff faced in managing abalone harvest. The infant population must be protected since it represents future harvests. On the other hand, the harvest should be designed to be efficient with a yield to justify the effort. This assignment will use VOLUME to form binary decision rules to guide harvesting. If VOLUME is below a "cutoff" (i.e. a specified volume), that individual will not be harvested. If above, it will be harvested. Different rules are possible.The Management needs to make a decision to implement 1 rule that meets the business goal.***
 
 -----
 
@@ -284,12 +285,13 @@ ggplot(data = harvest, aes(x = Volume, y = Proportion, col = Type)) +
 ```
 
 ***We can clearly observe a difference in median between infants and adults. There will be a trade off of trying to preserve as much infants versus trying to harvest as much adults as possible. Since we want to save as much infants as possible, we don't want to choose the median infant point as the cut off. This would harvest roughly half of all infants which would have a negative effect on future harvests. Choosing the median adult point as the cut off would be the better option because it would still save roughly 97.6% of all infants while harvesting half of all adults. There needs to be a business decision made based on the choosing the right cut off point for the business. ***
+
 -----
 
 
-More harvest strategies:
+***More harvest strategies:***
 
-This part will address the determination of a cutoff volume.value corresponding to the observed maximum difference in harvest percentages of adults and infants. In other words, we want to find the volume value such that the vertical distance between the infant curve and the adult curve is maximum. To calculate this result, the vectors of proportions from item (6) must be used. These proportions must be converted from "not harvested" to "harvested" proportions by using (1 - prop.infants) for infants, and (1 - prop.adults) for adults. The reason the proportion for infants drops sooner than adults is that infants are maturing and becoming adults with larger volumes.
+***This part will address the determination of a cutoff volume.value corresponding to the observed maximum difference in harvest percentages of adults and infants. In other words, we want to find the volume value such that the vertical distance between the infant curve and the adult curve is maximum. To calculate this result, the vectors of proportions from item (6) must be used. These proportions must be converted from "not harvested" to "harvested" proportions by using (1 - prop.infants) for infants, and (1 - prop.adults) for adults. The reason the proportion for infants drops sooner than adults is that infants are maturing and becoming adults with larger volumes.***
 
 -----
 

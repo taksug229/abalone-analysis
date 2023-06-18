@@ -10,7 +10,9 @@ knitr::opts_chunk$set(echo = FALSE, eval = TRUE)
 
 ```
 
------
+# 1. Data Preparation
+
+***The structure of the data. We can see that there are 1,036 observations (rows) and 8 variables (columns). ***
 
 ```{r 1analysis_setup, message = FALSE, warning = FALSE}
 library(ggplot2)
@@ -29,14 +31,16 @@ mydata$RATIO <- mydata$SHUCK / mydata$VOLUME
 
 -----
 
+***The basic summary of the data with a table of Class vs Rings.***
+
 ```{r 1Part_1a}
 summary(mydata)
 table(mydata$CLASS, mydata$RINGS)
 
 ```
 
-The variables being discussed here is SEX and CLASS. SEX contains male, female, and infant. CLASS are ordered age classification based on RINGS (A1=youngest, and A6= oldest). Overall, the distribution seems like it's following a normal distribution, but with a slight left skewness.
-Potential outliers may be abalones that are considered infants in the A4 and A5 groups. Since A4 and A5 are older, their sex should have been identified and it could be an error in the data.
+***The variables being discussed here is SEX and CLASS. SEX contains male, female, and infant. CLASS are ordered age classification based on RINGS (A1=youngest, and A6= oldest). Overall, the distribution seems like it's following a normal distribution, but with a slight left skewness.
+Potential outliers may be abalones that are considered infants in the A4 and A5 groups. Since A4 and A5 are older, their sex should have been identified and it could be an error in the data.***
 
 ```{r 1Part_1b}
 t1 <- table(mydata$SEX, mydata$CLASS)
@@ -50,7 +54,7 @@ barplot(t1["M",], main="M")
 
 ```
 
-Female and male abalones are left skewed and infant abalones are right skewed in the ordered class. This is most likely because it is harder to identify the sex of younger abalones. The number of infant abalones decrease as the age groups increase because the sex are identified in older groups. 
+***Female and male abalones are left skewed and infant abalones are right skewed in the ordered class. This is most likely because it is harder to identify the sex of younger abalones. The number of infant abalones decrease as the age groups increase because the sex are identified in older groups.***
 
 ```{r 1Part_1c}
 set.seed(123)
@@ -79,9 +83,8 @@ abline(a=0, b=slope)
 
 ```
 
-Both plots have a positive correlation to whole. As age groups increase, whole increases and the y variable of volume and shuck increase as well. 
-The first plot has A3~A5 scattered around the middle and top right part of the graph. This behavior seems random without a clear trend.
-However, for the second plot, we can observe certain trends. The younger groups such as A1~A3 are much closer to the maximum line compared to the older groups such A4~A5. It seems like as abalones age, the ratio of shuck to whole starts to decrease. This is an interesting finding because the first plot is a visualization of volume vs whole. Even though the volume may increase as abalones age, that doesn't mean the shuck will increase as well. 
+***Both plots have a positive correlation to whole. As age groups increase, whole increases and the y variable of volume and shuck increase as well. The first plot has A3~A5 scattered around the middle and top right part of the graph. This behavior seems random without a clear trend. However, for the second plot, we can observe certain trends. The younger groups such as A1~A3 are much closer to the maximum line compared to the older groups such A4~A5. It seems like as abalones age, the ratio of shuck to whole starts to decrease. This is an interesting finding because the first plot is a visualization of volume vs whole. Even though the volume may increase as abalones age, that doesn't mean the shuck will increase as well.***
+
 -----
 
 ```{r 1Part_3a}
@@ -96,7 +99,7 @@ rm(temp_data)
 }
 ```
 
-All three sexes are close to a normality. However, all 3 sexes seem to be right skewed as we can observe from the histogram and qqplot. The boxplot shows there are outliers in all 3 sexes above the upper extreme. 
+***All three sexes are close to a normality. However, all 3 sexes seem to be right skewed as we can observe from the histogram and qqplot. The boxplot shows there are outliers in all 3 sexes above the upper extreme. ***
 
 ```{r 1Part_3b}
 outlier_index_vec <- c()
@@ -109,7 +112,9 @@ rm(temp_outliers, outlier_idx)
 kable(mydata[outlier_index_vec,])
 ```
 
-The majority of the outliers have a ratio above 0.22. There was 1 observation that had a ratio of 0.06 which made it as an outlier in the lower extreme. Also, there were no outliers for abalones in the A4 class. 
+
+***The majority of the outliers have a ratio above 0.22. There was 1 observation that had a ratio of 0.06 which made it as an outlier in the lower extreme. Also, there were no outliers for abalones in the A4 class.***
+
 -----
 
 ```{r 1Part_4a}
@@ -120,7 +125,9 @@ plot(mydata$VOLUME, mydata$RINGS, xlab="Volume", ylab="Rings")
 plot(mydata$WHOLE, mydata$RINGS, xlab="Whole", ylab="Rings")
 ```
 
-Since there is a positive correlation between the variables, I think it would do fairly well to predict the age. However, as age approaches the A4 & A5 class, it would be difficult to classify because both groups have similar boxplot stats for volume and whole.
+
+***Since there is a positive correlation between the variables, I think it would do fairly well to predict the age. However, as age approaches the A4 & A5 class, it would be difficult to classify because both groups have similar boxplot stats for volume and whole.***
+
 -----
 
 ```{r 1Part_5a}
@@ -153,9 +160,7 @@ for (v in c("RATIO", "VOLUME", "SHUCK")){
 
 ```
 
-It seems volume and shuck follow a similar trend. As age increases, the volume and shuck increases as well. The females have the highest average volume and shuck in any age group for these 2 variables. 
-However, when it comes to ratio, it follows a different trend. As age increases, the average ratio decreases. Also, the lines intersect frequently. In A1 groups, the infants have the highest ratio. After A2, the female and male keeps intersecting. 
-I wonder why the trend for the ratio are inconsistent compared to volume and shuck. It makes me even wonder if some of the abalones were correctly classified because there are inconsistencies in the ratio. 
+***It seems volume and shuck follow a similar trend. As age increases, the volume and shuck increases as well. The females have the highest average volume and shuck in any age group for these 2 variables. However, when it comes to ratio, it follows a different trend. As age increases, the average ratio decreases. Also, the lines intersect frequently. In A1 groups, the infants have the highest ratio. After A2, the female and male keeps intersecting. I wonder why the trend for the ratio are inconsistent compared to volume and shuck. It makes me even wonder if some of the abalones were correctly classified because there are inconsistencies in the ratio.***
 
 ```{r 1Part_5c}
 library(dplyr)
@@ -171,16 +176,15 @@ boxplot(newdata[infant_mask,]$WHOLE~newdata[infant_mask,]$RINGS, xlab="Rings (In
 boxplot(newdata[adult_mask,]$WHOLE~newdata[adult_mask,]$RINGS, xlab="Rings (Adult)", ylab="WHOLE", ylim = c(0, 400))
 ```
 
-We can suggest that as abalones age, the volume and whole increase. Comparing the infant and adults, we can observe that the adults have more variability as rings increases. The infants have a relatively small variance compared to the adults. 
+***We can suggest that as abalones age, the volume and whole increase. Comparing the infant and adults, we can observe that the adults have more variability as rings increases. The infants have a relatively small variance compared to the adults. ***
 
 -----
 
-The biggest reason that the original study failed was because it was not possible to completely predict the age of the abalone from the physical measurements. Specifically, the age group of A4~A5 had identical sizes which was difficult to differentiate. For the age groups in early ages such as A1~A3, it may be possibly to predict the age with the physical appearances. 
+***The biggest reason that the original study failed was because it was not possible to completely predict the age of the abalone from the physical measurements. Specifically, the age group of A4~A5 had identical sizes which was difficult to differentiate. For the age groups in early ages such as A1~A3, it may be possibly to predict the age with the physical appearances.***
 
-I would inquire if there are certain groups that need to be considered. For example, for studies related to health, age is an extremely important variable. During the COVID pandemic, the Simpson's paradox became a topic of concern while analyzing the statistics of fatality rate and vaccine effectiveness.  https://www.lancaster.ac.uk/stor-i-student-sites/robyn-goldsmith/2021/04/02/being-careful-with-covid-19-statistics-simpsons-paradox/ 
-I would inquire about any demographic information as possible. 
+***I would inquire if there are certain groups that need to be considered. For example, for studies related to health, age is an extremely important variable. During the COVID pandemic, the Simpson's paradox became a topic of concern while analyzing the statistics of fatality rate and vaccine effectiveness.  https://www.lancaster.ac.uk/stor-i-student-sites/robyn-goldsmith/2021/04/02/being-careful-with-covid-19-statistics-simpsons-paradox/ I would inquire about any demographic information as possible.***
 
-One of the most difficult elements of observational studies is that the sample may not represent the population. For example, even though a study used stratified sampling methods to gather data, the same results may not hold true if the data was collected in an entirely different environment (e.g., country, time of day/year, etc.). With observational studies, correlation can possibly be determined, but not causality. Determining causality would be extremely difficult and it will require domain knowledge and critical thinking. 
+***One of the most difficult elements of observational studies is that the sample may not represent the population. For example, even though a study used stratified sampling methods to gather data, the same results may not hold true if the data was collected in an entirely different environment (e.g., country, time of day/year, etc.). With observational studies, correlation can possibly be determined, but not causality. Determining causality would be extremely difficult and it will require domain knowledge and critical thinking.***
 
 ```{r 1Part_6}
 write.csv(mydata, "mydata.csv", row.names=FALSE)
