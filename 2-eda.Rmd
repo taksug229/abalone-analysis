@@ -5,14 +5,14 @@ output:
   html_document: default
 ---
 
-```{r setup, include = FALSE}
+```{r 2setup, include = FALSE}
 knitr::opts_chunk$set(echo = FALSE, eval = TRUE)
 
 ```
 
 ##Data Analysis #2
 
-```{r analysis_setup1, message = FALSE, warning = FALSE}
+```{r 2analysis_setup, message = FALSE, warning = FALSE}
 
 library(dplyr)
 library(flux)
@@ -27,7 +27,7 @@ mydata <- read.csv("mydata.csv", sep = ",", stringsAsFactors = TRUE)
 str(mydata)
 
 ```
-```{r Part_1a, fig.width = 12}
+```{r 2Part_1a, fig.width = 12}
 my_layout <- matrix(c(1,2,3,3), ncol=2, byrow=TRUE)
 layout(my_layout)
 hist(x = mydata$RATIO, main="Abalone RATIO Frequencies", col="orange")
@@ -44,7 +44,7 @@ glue("excess kurtosis: {k_ex}")
 ```
 
 
-```{r Part_1b, fig.width = 12, fig.height = 8}
+```{r 2Part_1b, fig.width = 12, fig.height = 8}
 
 mydata$L_RATIO <- log10(mydata$RATIO)
 
@@ -73,7 +73,7 @@ bartlett.test(mydata$L_RATIO~mydata$CLASS)
 ***L_RATIO (log ratio) exhibits a better conformance to a normal distribution with homogeneous variances across age. The skewness is close to 0 which indicates it's a symmetrical distribution. The kurtosis is also close to 3 which indicates it is mesokurtic and resembles a normal distribution peak. We can visually see this with the histogram and qqplot as well. We can also see that the L_RATIO have homogeneous variances across ages with the Barlett test. Since the p-value is much greater than 0.05, we fail to reject the null hypothesis of having identical variances. On the other hand, the RATIO has p-value of 0.0002531 for the Barlett test which indicates that the variances are not homogeneous across ages.***
 
 
-```{r Part_2a}
+```{r 2Part_2a}
 mod1 <- aov(L_RATIO~CLASS*SEX, data = mydata)
 summary(mod1)
 
@@ -82,14 +82,14 @@ summary(mod2)
 ```
 ***While we get statistically significant results with CLASS and SEX independently, that is not the case when we factor CLASS and SEX. We can say there is an interaction effect between these two independent variables. Since both of these variables affects the outcome of L_RATIO, we inevitably get a non-significant result when these two are interacting. ***
 
-```{r Part_2b}
+```{r 2Part_2b}
 TukeyHSD(mod2)
 
 ```
 
 ***We can identify many statistically significant results from different age groups. The only non-significant result we observe was from A2-A1. This indicates that as the abolone's age group change (besides from A1 to A2), the L_RATIO will change as well. Male and female abalones can be combined into a single category because both have significant differences from infants and we have an extremely high adjusted p-value which suggests there is no difference between male and female.***
 
-```{r Part_3a1}
+```{r 2Part_3a1}
 # Here, we show how to define the new variable TYPE using only base R functions:
 
 mydata$TYPE <- factor(ifelse(mydata$SEX == "I", "I", "ADULT"))
@@ -97,7 +97,7 @@ table(mydata$TYPE)
 
 ```
 
-```{r Part_3a2, fig.width = 12}
+```{r 2Part_3a2, fig.width = 12}
 ggplot(data = mydata, aes(x = VOLUME)) +
   geom_histogram(fill="red") +
   facet_grid(. ~TYPE)
@@ -105,7 +105,7 @@ ggplot(data = mydata, aes(x = VOLUME)) +
 
 ***Infants have a right skewed distribution compared to adults. It would be hard to separate infants and adults around the lower volume areas, since there are a lot of overlaps in the two distributions (especially volumes under 300). For larger volumes, it may be easier to separate infants and adults. For volumes over 500, most of the abalones tend to be adults.***
 
-```{r Part_3b, fig.width = 12, fig.height = 8}
+```{r 2Part_3b, fig.width = 12, fig.height = 8}
 
 mydata$L_SHUCK <- log10(mydata$SHUCK)
 mydata$L_VOLUME <- log10(mydata$VOLUME)
@@ -126,14 +126,14 @@ grid.arrange(
 
 ***The log-transformation reduces the variability of the relationship between volume and shuck we can make a better distinction between groups. We can see that there is a positive correlation between volume and shuck. For class levels, we can observe that the younger age groups, especially the A1 groups, are separated from the rest. We can observe that in general, when age groups increase, the shuck and volume increase as well. This observation is replicated in the type level. Most of the infants are scattered around the lower end of the volume and shuck. The adults are scattered around the higher end of the volume and shuck.***
 
-```{r Part_4a1}
+```{r 2Part_4a1}
 mydata$TYPE[mydata$CLASS == "A4" | mydata$CLASS == "A5"] <- "ADULT"
 table(mydata$TYPE)
 
 ```
 
 
-```{r Part_4a2}
+```{r 2Part_4a2}
 m_reg1 <- lm(L_SHUCK~L_VOLUME + CLASS + TYPE, data = mydata)
 summary(m_reg1)
 ```
@@ -146,7 +146,7 @@ summary(m_reg1)
 
 -----
 
-```{r Part_5am, fig.width = 12}
+```{r 2Part_5am, fig.width = 12}
 my_layout <- matrix(c(1,2), ncol=2, byrow=TRUE)
 layout(my_layout)
 hist(x = m_reg1$residuals, main="Residuals of Model", col="lightblue")
@@ -162,7 +162,7 @@ glue("excess kurtosis: {k_ex}")
 ```
 
 
-```{r Part_5b, fig.width = 12, fig.height = 8}
+```{r 2Part_5b, fig.width = 12, fig.height = 8}
 tempdf <- data.frame(L_VOLUME = mydata$L_VOLUME, CLASS = mydata$CLASS, TYPE = mydata$TYPE, residuals = m_reg1$residuals)
 grid.arrange(
   ggplot(data = tempdf, aes(x = L_VOLUME, y = residuals, col = CLASS)) +
@@ -189,7 +189,7 @@ There is a tradeoff faced in managing abalone harvest. The infant population mus
 
 -----
 
-```{r Part_6a}
+```{r 2Part_6a}
 
 idxi <- mydata$TYPE == "I"
 idxa <- mydata$TYPE == "ADULT"
@@ -214,7 +214,7 @@ for (k in 1:10000) {
 ```
 
 
-```{r Part_6b}
+```{r 2Part_6b}
 # Largest infant volume
 (max_inf_vol <- max(mydata$VOLUME[mydata$TYPE == "I"]))  # [1] 526.6383
 
@@ -232,7 +232,7 @@ sum(mydata$VOLUME[mydata$TYPE == "I"] > max_inf_vol) /
 ```
 
 
-```{r Part_6c}
+```{r 2Part_6c}
 # Add code to determine the median infant volume:
 (med_inf_vol <- median(mydata$VOLUME[mydata$TYPE == "I"])) # [1] 133.8214
 
@@ -264,7 +264,7 @@ sum(mydata$VOLUME[mydata$TYPE == "ADULT"] > med_adu_vol) /
 
 ```
 
-```{r Part_6d, fig.width = 12, fig.height = 6}
+```{r 2Part_6d, fig.width = 12, fig.height = 6}
 
 library(reshape2) # install.packages("reshape2")
 
@@ -293,7 +293,7 @@ This part will address the determination of a cutoff volume.value corresponding 
 
 -----
 
-```{r Part_7a}
+```{r 2Part_7a}
 difference <- ((1 - prop.adults) - (1 - prop.infants))
 diff_peak <- volume.value[which.max(difference)]
 plot(x = volume.value, y = difference, type="l")
@@ -304,7 +304,7 @@ abline(v=diff_peak, col="black")
 text(x=diff_peak, y=0, glue("Difference Peak: {round(diff_peak, 1)}"))
 ```
 
-```{r Part_7b}
+```{r 2Part_7b}
 
 y.loess.a <- loess(1 - prop.adults ~ volume.value, span = 0.25,
 	family = c("symmetric"))
@@ -321,7 +321,7 @@ text(x=diff_peak, y=0, glue("Difference Peak: {round(smoothdiff_peak, 1)}"))
 
 ```
 
-```{r Part_7c, fig.width = 12, fig.height = 6}
+```{r 2Part_7c, fig.width = 12, fig.height = 6}
 
 diff_df <- data.frame(Difference = difference, Smooth_difference = smooth.difference, Volume = volume.value)
 diff_df <- melt(diff_df, id.vars="Volume", variable.name = "Type", value.name="Difference")
@@ -350,7 +350,7 @@ grid.arrange(
 ```
 
 
-```{r Part_7d}
+```{r 2Part_7d}
 
 (1 - prop.adults)[which.max(smooth.difference)]  # [1] 0.7416332
 # OR,
@@ -366,7 +366,7 @@ sum(mydata[mydata$TYPE == "I", "VOLUME"] >
 
 -----
 
-```{r Part_8a}
+```{r 2Part_8a}
 
 cutoff <- volume.value[volume.value > max(mydata[mydata$CLASS == "A1" &
   mydata$TYPE == "I", "VOLUME"])][1] # [1] 206.786
@@ -380,7 +380,7 @@ sum(mydata[mydata$TYPE == "ADULT", "VOLUME"] > cutoff) / total.adults # [1] 0.82
 ```
 
 
-```{r Part_8b, fig.width = 12}
+```{r 2Part_8b, fig.width = 12}
 
 ggplot(data = harvest, aes(x = Volume, y = Proportion, col = Type)) +
   geom_line() +
@@ -397,7 +397,7 @@ ggplot(data = harvest, aes(x = Volume, y = Proportion, col = Type)) +
   theme(legend.position = "bottom")
 ```
 
-```{r Part_9, fig.width = 8.5}
+```{r 2Part_9, fig.width = 8.5}
 x <- (1 - prop.infants)
 y <- (1 - prop.adults)
 max_inf_idx <- match(TRUE, volume.value>=max_inf_vol)
@@ -420,11 +420,11 @@ abline(v=x[cutoff_idx], col="darkblue")
 abline(a=0, b=1, lty = 3)
 ```
 
-```{r Part_9b}
+```{r 2Part_9b}
 auc(x = x, y = y)
 ```
 
-```{r Part_10} 	
+```{r 2Part_10} 	
 volume_cutoffs <- round(c(max_inf_vol, med_inf_vol, med_adu_vol, smoothdiff_peak, cutoff), 1)
 cutoff_idxs <- c(max_inf_idx, med_inf_idx, med_adu_idx, smd_peak_idx, cutoff_idx)
 round((1 - prop.adults)[cutoff_idxs[1]], 3)

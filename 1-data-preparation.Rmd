@@ -5,14 +5,14 @@ output:
   html_document: default
 ---
 
-```{r setup, include = FALSE}
+```{r 1setup, include = FALSE}
 knitr::opts_chunk$set(echo = FALSE, eval = TRUE)
 
 ```
 
 -----
 
-```{r analysis_setup1, message = FALSE, warning = FALSE}
+```{r 1analysis_setup, message = FALSE, warning = FALSE}
 library(ggplot2)
 library(gridExtra)
 library(knitr)
@@ -29,7 +29,7 @@ mydata$RATIO <- mydata$SHUCK / mydata$VOLUME
 
 -----
 
-```{r Part_1a}
+```{r 1Part_1a}
 summary(mydata)
 table(mydata$CLASS, mydata$RINGS)
 
@@ -38,7 +38,7 @@ table(mydata$CLASS, mydata$RINGS)
 The variables being discussed here is SEX and CLASS. SEX contains male, female, and infant. CLASS are ordered age classification based on RINGS (A1=youngest, and A6= oldest). Overall, the distribution seems like it's following a normal distribution, but with a slight left skewness.
 Potential outliers may be abalones that are considered infants in the A4 and A5 groups. Since A4 and A5 are older, their sex should have been identified and it could be an error in the data.
 
-```{r Part_1b}
+```{r 1Part_1b}
 t1 <- table(mydata$SEX, mydata$CLASS)
 addmargins(t1)
 
@@ -52,7 +52,7 @@ barplot(t1["M",], main="M")
 
 Female and male abalones are left skewed and infant abalones are right skewed in the ordered class. This is most likely because it is harder to identify the sex of younger abalones. The number of infant abalones decrease as the age groups increase because the sex are identified in older groups. 
 
-```{r Part_1c}
+```{r 1Part_1c}
 set.seed(123)
 sample_ints <-sample(1:1036, 200)
 work <- mydata[sample_ints, ]
@@ -62,14 +62,14 @@ plot(work[, 2:6])
 
 -----
 
-```{r Part_2a}
+```{r 1Part_2a}
 class_color <- c("lightgreen", "darkgreen", "orange", "red", "blue")
 plot(mydata$WHOLE, mydata$VOLUME, col=class_color[mydata$CLASS], xlab = "Whole", ylab="Volume")
 legend("topleft", legend=sort(unique(mydata$CLASS)),col=class_color, lwd=1, bty="o")
 ```
 
 
-```{r Part_2b}
+```{r 1Part_2b}
 shuck_whole_ratio <- mydata$SHUCK / mydata$WHOLE
 slope <- shuck_whole_ratio[which.max(shuck_whole_ratio)]
 class_color <- c("lightgreen", "darkgreen", "orange", "red", "blue")
@@ -84,7 +84,7 @@ The first plot has A3~A5 scattered around the middle and top right part of the g
 However, for the second plot, we can observe certain trends. The younger groups such as A1~A3 are much closer to the maximum line compared to the older groups such A4~A5. It seems like as abalones age, the ratio of shuck to whole starts to decrease. This is an interesting finding because the first plot is a visualization of volume vs whole. Even though the volume may increase as abalones age, that doesn't mean the shuck will increase as well. 
 -----
 
-```{r Part_3a}
+```{r 1Part_3a}
 par(mfcol = c(3,3))
 for (sex in unique(mydata$SEX)){
   temp_data <- mydata[mydata$SEX == sex, "RATIO"]
@@ -98,7 +98,7 @@ rm(temp_data)
 
 All three sexes are close to a normality. However, all 3 sexes seem to be right skewed as we can observe from the histogram and qqplot. The boxplot shows there are outliers in all 3 sexes above the upper extreme. 
 
-```{r Part_3b}
+```{r 1Part_3b}
 outlier_index_vec <- c()
 for (sex in unique(mydata$SEX)){
   temp_outliers <- boxplot.stats(mydata[mydata$SEX == sex, "RATIO"])$out
@@ -112,7 +112,7 @@ kable(mydata[outlier_index_vec,])
 The majority of the outliers have a ratio above 0.22. There was 1 observation that had a ratio of 0.06 which made it as an outlier in the lower extreme. Also, there were no outliers for abalones in the A4 class. 
 -----
 
-```{r Part_4a}
+```{r 1Part_4a}
 par(mfrow=c(2,2))
 boxplot(mydata$VOLUME~mydata$CLASS, xlab="Class", ylab="Volume")
 boxplot(mydata$WHOLE~mydata$CLASS, xlab="Class", ylab="Whole")
@@ -123,7 +123,7 @@ plot(mydata$WHOLE, mydata$RINGS, xlab="Whole", ylab="Rings")
 Since there is a positive correlation between the variables, I think it would do fairly well to predict the age. However, as age approaches the A4 & A5 class, it would be difficult to classify because both groups have similar boxplot stats for volume and whole.
 -----
 
-```{r Part_5a}
+```{r 1Part_5a}
 cols <-c("VOLUME", "SHUCK", "RATIO")
 aggs_means <- aggregate(mydata[,cols], by=list(mydata$SEX, mydata$CLASS), FUN=mean)
 dim_names <- list(c("F", "I", "M"), c("A1", "A2", "A3", "A4", "A5"))
@@ -135,7 +135,7 @@ kable(shuck_mat)
 kable(ratio_mat)
 ```
 
-```{r Part_5b, fig.width = 9}
+```{r 1Part_5b, fig.width = 9}
 gender_color <- c("red", "purple", "blue")
 par(mfrow=c(3,1))
 for (v in c("RATIO", "VOLUME", "SHUCK")){
@@ -157,7 +157,7 @@ It seems volume and shuck follow a similar trend. As age increases, the volume a
 However, when it comes to ratio, it follows a different trend. As age increases, the average ratio decreases. Also, the lines intersect frequently. In A1 groups, the infants have the highest ratio. After A2, the female and male keeps intersecting. 
 I wonder why the trend for the ratio are inconsistent compared to volume and shuck. It makes me even wonder if some of the abalones were correctly classified because there are inconsistencies in the ratio. 
 
-```{r Part_5c}
+```{r 1Part_5c}
 library(dplyr)
 newdata <- subset(mydata, RINGS < 16)
 newdata <- newdata %>% 
@@ -182,6 +182,6 @@ I would inquire about any demographic information as possible.
 
 One of the most difficult elements of observational studies is that the sample may not represent the population. For example, even though a study used stratified sampling methods to gather data, the same results may not hold true if the data was collected in an entirely different environment (e.g., country, time of day/year, etc.). With observational studies, correlation can possibly be determined, but not causality. Determining causality would be extremely difficult and it will require domain knowledge and critical thinking. 
 
-```{r Part_6}
+```{r 1Part_6}
 write.csv(mydata, "mydata.csv", row.names=FALSE)
 ```

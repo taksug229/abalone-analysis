@@ -1,0 +1,10 @@
+---
+title: "REAMDE"
+output: md_document
+---
+
+```{r child = '1-data-preparation.Rmd'}
+```
+
+```{r child = '2-eda.Rmd'}
+```
