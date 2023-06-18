@@ -7,7 +7,6 @@
 
     renv::restore()
 
-    ## * The library is already synchronized with the lockfile.
 
 # Introduction
 
@@ -775,14 +774,14 @@ adults are scattered around the higher end of the volume and shuck.
     ## F-statistic:  3287 on 6 and 1029 DF,  p-value: < 2.2e-16
 
 The summary here shows the reference level of class as A1 and type as
-adult. The coefficients for classes A2~A5 are the differences associated
-with A1 and adult. We can imply that the classes A1~A5 are highly
+adult. The coefficients for classes A2-A5 are the differences associated
+with A1 and adult. We can imply that the classes A1-A5 are highly
 correlated variables. When we plotted the data in the scatter plot
 earlier, it showed positive correlation for volume and shuck for all
-classes A1~A5 independently. However, when we fit the model and
+classes A1-A5 independently. However, when we fit the model and
 considered all the predictor variables together, we can see that the
 classes A2~A5 have a negative effect. The coefficients shows that if the
-data belongs to a class in A2~A5 and holding every other predictors
+data belongs to a class in A2-A5 and holding every other predictors
 constant, it will have a negative effect when the reference class is A1
 and reference type is adult.
 
