@@ -1,12 +1,13 @@
-# Requirements and environment set up
+# Requirements
 
 -   R
 -   renv
 
-<!-- -->
+# Environment set up
 
     renv::restore()
 
+    ## * The library is already synchronized with the lockfile.
 
 # Introduction
 
@@ -561,50 +562,50 @@ have similar boxplot stats for volume and whole.
 
 ![](README_files/figure-markdown_strict/1Part_5b-1.png)
 
-***It seems volume and shuck follow a similar trend. As age increases,
-the volume and shuck increases as well. The females have the highest
-average volume and shuck in any age group for these 2 variables.
-However, when it comes to ratio, it follows a different trend. As age
-increases, the average ratio decreases. Also, the lines intersect
-frequently. In A1 groups, the infants have the highest ratio. After A2,
-the female and male keeps intersecting. I wonder why the trend for the
-ratio are inconsistent compared to volume and shuck. It makes me even
-wonder if some of the abalones were correctly classified because there
-are inconsistencies in the ratio.***
+It seems volume and shuck follow a similar trend. As age increases, the
+volume and shuck increases as well. The females have the highest average
+volume and shuck in any age group for these 2 variables. However, when
+it comes to ratio, it follows a different trend. As age increases, the
+average ratio decreases. Also, the lines intersect frequently. In A1
+groups, the infants have the highest ratio. After A2, the female and
+male keeps intersecting. I wonder why the trend for the ratio are
+inconsistent compared to volume and shuck. It makes me even wonder if
+some of the abalones were correctly classified because there are
+inconsistencies in the ratio.
 
 ![](README_files/figure-markdown_strict/1Part_5c-1.png)
 
-***We can suggest that as abalones age, the volume and whole increase.
+We can suggest that as abalones age, the volume and whole increase.
 Comparing the infant and adults, we can observe that the adults have
 more variability as rings increases. The infants have a relatively small
-variance compared to the adults.***
+variance compared to the adults.
 
 ------------------------------------------------------------------------
 
-***The biggest reason that the original study failed was because it was
-not possible to completely predict the age of the abalone from the
-physical measurements. Specifically, the age group of A4-A5 had
-identical sizes which was difficult to differentiate. For the age groups
-in early ages such as A1-A3, it may be possibly to predict the age with
-the physical appearances.***
+The biggest reason that the original study failed was because it was not
+possible to completely predict the age of the abalone from the physical
+measurements. Specifically, the age group of A4-A5 had identical sizes
+which was difficult to differentiate. For the age groups in early ages
+such as A1-A3, it may be possibly to predict the age with the physical
+appearances.
 
-***I would inquire if there are certain groups that need to be
-considered. For example, for studies related to health, age is an
-extremely important variable. During the COVID pandemic, the [Simpson’s
-paradox became a topic of
+I would inquire if there are certain groups that need to be considered.
+For example, for studies related to health, age is an extremely
+important variable. During the COVID pandemic, the [Simpson’s paradox
+became a topic of
 concern](https://www.lancaster.ac.uk/stor-i-student-sites/robyn-goldsmith/2021/04/02/being-careful-with-covid-19-statistics-simpsons-paradox/)
 while analyzing the statistics of fatality rate and vaccine
 effectiveness. I would inquire about any demographic information as
-possible.***
+possible.
 
-***One of the most difficult elements of observational studies is that
-the sample may not represent the population. For example, even though a
+One of the most difficult elements of observational studies is that the
+sample may not represent the population. For example, even though a
 study used stratified sampling methods to gather data, the same results
 may not hold true if the data was collected in an entirely different
 environment (e.g., country, time of day/year, etc.). With observational
 studies, correlation can possibly be determined, but not causality.
 Determining causality would be extremely difficult and it will require
-domain knowledge and critical thinking.***
+domain knowledge and critical thinking.
 
 # 2. Data Analysis
 

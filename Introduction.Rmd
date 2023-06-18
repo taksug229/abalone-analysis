@@ -7,10 +7,12 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Requirements and environment set up
+# Requirements
 
 - R
 - renv
+
+#  Environment set up
 
 ```{r renv}
 renv::restore()
